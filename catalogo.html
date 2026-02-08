@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Catálogo</title>
+  <link rel="stylesheet" href="catlogo.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+  <header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" class="logo">
+    <button id="logout">Cerrar sesión</button>
+  </header>
+
+  <main>
+    <h1 id="saludo"></h1>
+
+    <!-- AQUÍ JS INSERTA LAS PELÍCULAS -->
+    <section class="grid" id="peliculas"></section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="catalogo.js"></script>
+</body>
+</html>

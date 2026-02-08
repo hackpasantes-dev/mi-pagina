@@ -1,0 +1,38 @@
+body {
+  background: #111;
+  color: white;
+  font-family: Arial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.admin-card, main {
+  background: #1c1c1c;
+  padding: 30px;
+  border-radius: 8px;
+  width: 320px;
+  text-align: center;
+}
+
+input, button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+button {
+  background: #e50914;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+header {
+  position: absolute;
+  top: 20px;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}

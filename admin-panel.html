@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="admin.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+<header>
+  <h2>🎬 Panel de Administración</h2>
+  <button id="logout">Cerrar sesión</button>
+</header>
+
+<main>
+  <h3>Subir película / serie</h3>
+
+  <input type="text" id="titulo" placeholder="Título">
+  <input type="number" id="anio" placeholder="Año">
+  <input type="text" id="duracion" placeholder="Duración (ej: 2h 10m)">
+  <input type="file" id="video">
+
+  <button id="subir">Subir</button>
+  <p id="msg"></p>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="admin-panel.js"></script>
+</body>
+</html>

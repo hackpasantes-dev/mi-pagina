@@ -1,0 +1,159 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: url("https://xboxwire.thesourcemediaassets.com/sites/2/2023/05/Background-size1920x1080-4e1694a6-75aa-4c36-9d4d-7fb6a3102005-bc5318781aad7f5c8520.png") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 1;
+}
+
+.card {
+  position: relative;
+  z-index: 2;
+  width: 360px;
+  background: rgba(0,0,0,0.8);
+  padding: 40px 35px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.logo {
+  width: 90px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #b3b3b3;
+  margin-bottom: 25px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #333;
+}
+
+.divider span {
+  margin: 0 10px;
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.google { color: #fff; }
+
+.facebook { color: #1877f2; }
+.apple { color: #fff; }
+
+.or {
+  color: #777;
+  margin: 15px 0;
+}
+
+form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: #333;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+}
+
+form input::placeholder {
+  color: #8c8c8c;
+}
+
+form button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #e50914;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+form button:hover {
+  background: #f6121d;
+}
+
+#mensaje {
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.login {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #b3b3b3;
+}
+
+.login span {
+  color: #e50914;
+  cursor: pointer;
+}
+.logog{
+width: 25px;
+border-radius: 15px;
+
+}
+.logop{
+
+    width: 27px;
+    height: 27px;
+    border-radius:15px ;
+}
+.url{
+
+    text-decoration: none;
+}
