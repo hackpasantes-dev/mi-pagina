@@ -1,4 +1,6 @@
-/* RESET */
+/* =========================
+   RESET
+========================= */
 * {
   margin: 0;
   padding: 0;
@@ -7,8 +9,9 @@
 
 body {
   background: #141414;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
   color: white;
+  overflow-x: hidden;
 }
 
 /* =========================
@@ -19,37 +22,44 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 60px;
-  background: #000;
+  padding: 18px 60px;
   position: fixed;
   width: 100%;
   z-index: 1000;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.3), transparent);
+  backdrop-filter: blur(6px);
 }
 
 .logo {
-  height: 28px;
+  height: 32px;
 }
 
 .navbar nav a {
-  color: white;
+  color: #e5e5e5;
   text-decoration: none;
-  margin-left: 20px;
+  margin-left: 25px;
   font-size: 14px;
   transition: 0.3s;
 }
 
 .navbar nav a:hover {
-  color: #b3b3b3;
+  color: #fff;
 }
 
 button {
-  background: red;
+  background: #e50914;
   border: none;
-  padding: 7px 14px;
+  padding: 8px 18px;
   color: white;
   border-radius: 4px;
   cursor: pointer;
   font-size: 13px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #f40612;
 }
 
 /* =========================
@@ -57,72 +67,84 @@ button {
 ========================= */
 
 main {
-  padding-top: 80px;
+  padding-top: 90px;
 }
 
 /* =========================
-   HERO BANNER
-========================= */
-/* =========================
-   HERO BANNER MEJORADO
+   HERO
 ========================= */
 
 .hero {
-  height: 85vh;
+  height: 95vh;
   background-size: cover;
-  background-position: center center;
+  background-position: center 20%;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
   padding-left: 60px;
   position: relative;
-  filter: brightness(1.15);
 }
 
-/* Overlay estilo Netflix real */
+/* Oscurecer lateral */
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to right,
-    rgba(0,0,0,0.85) 0%,
-    rgba(0,0,0,0.6) 30%,
-    rgba(0,0,0,0.3) 55%,
-    rgba(0,0,0,0.1) 75%,
+    rgba(0,0,0,0.9) 0%,
+    rgba(0,0,0,0.7) 30%,
+    rgba(0,0,0,0.4) 60%,
     transparent 100%
   );
 }
 
-/* Mejora del texto */
+/* Oscurecer inferior */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    #141414 0%,
+    rgba(20,20,20,0.8) 40%,
+    transparent 70%
+  );
+}
+
 .hero-info {
   position: relative;
   z-index: 2;
-  max-width: 600px;
+  max-width: 650px;
 }
 
 .hero-info h1 {
-  font-size: 60px;
+  font-size: 72px;
   margin-bottom: 20px;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -1px;
 }
 
 .hero-info p {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   color: #ddd;
-  font-size: 16px;
+  font-size: 17px;
+  line-height: 1.6;
 }
 
 .hero-info button {
   background: white;
   color: black;
   font-weight: bold;
-  padding: 10px 20px;
+  padding: 14px 28px;
   border-radius: 4px;
-  font-size: 15px;
-  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
 }
 
+.hero-info button:hover {
+  background: #e6e6e6;
+}
 
 /* =========================
    FILAS
@@ -130,23 +152,35 @@ main {
 
 .fila {
   margin-left: 60px;
-  margin-bottom: 50px;
+  margin-bottom: 90px;
+  margin-top: 60px;
 }
 
 .fila h2 {
-  margin-bottom: 15px;
-  font-size: 22px;
+  margin-bottom: 20px;
+  font-size: 26px;
+  font-weight: 600;
 }
+
+/* =========================
+   SCROLL CONTENEDOR
+========================= */
 
 .contenedor {
   display: flex;
   overflow-x: auto;
-  gap: 12px;
+  gap: 25px; /* 🔥 MÁS SEPARACIÓN */
   scroll-behavior: smooth;
+  padding-bottom: 15px;
 }
 
 .contenedor::-webkit-scrollbar {
-  display: none;
+  height: 6px;
+}
+
+.contenedor::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
 }
 
 /* =========================
@@ -156,10 +190,10 @@ main {
 .card {
   min-width: 200px;
   height: 300px;
-  border-radius: 6px;
+  border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
   flex-shrink: 0;
   position: relative;
 }
@@ -170,58 +204,75 @@ main {
   object-fit: cover;
 }
 
+/* Hover más elegante */
 .card:hover {
   transform: scale(1.15);
-  z-index: 10;
+  z-index: 50;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.95);
+}
+
+/* Título overlay */
+.card::after {
+  content: attr(data-titulo);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+  font-size: 15px;
+  font-weight: 600;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.card:hover::after {
+  opacity: 1;
 }
 
 /* =========================
-   TOP 10 NUMEROS
+   TOP 10
 ========================= */
-
-.top10 .card {
-  position: relative;
-}
 
 .numero {
   position: absolute;
-  left: -25px;
-  bottom: -20px;
-  font-size: 120px;
+  left: -30px;
+  bottom: -25px;
+  font-size: 130px;
   font-weight: bold;
-  color: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.05);
   z-index: 0;
 }
 
 /* =========================
-   MODAL VIDEO
+   MODAL
 ========================= */
 
 .modal {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.95);
+  background: rgba(0,0,0,0.97);
   justify-content: center;
   align-items: center;
   z-index: 2000;
 }
 
 .modal-content {
-  width: 80%;
-  max-width: 1000px;
+  width: 85%;
+  max-width: 1100px;
 }
 
 .modal video {
   width: 100%;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 #cerrar {
-  font-size: 30px;
+  font-size: 32px;
   cursor: pointer;
   float: right;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 /* =========================
@@ -229,6 +280,7 @@ main {
 ========================= */
 
 @media (max-width: 768px) {
+
   .navbar {
     padding: 15px 20px;
   }
@@ -238,16 +290,25 @@ main {
   }
 
   .hero {
+    height: 65vh;
     padding-left: 20px;
   }
 
   .hero-info h1 {
-    font-size: 30px;
+    font-size: 32px;
+  }
+
+  .hero-info p {
+    font-size: 14px;
   }
 
   .card {
     min-width: 150px;
-    height: 230px;
+    height: 220px;
   }
-}
 
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+}
