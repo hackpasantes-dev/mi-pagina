@@ -64,7 +64,7 @@ function abrirModal(url) {
   modal.style.display = "flex";
 }
 
-// CERRAR MODAL
+
 document.getElementById("cerrar").onclick = () => {
   const modal = document.getElementById("modal");
   const video = document.getElementById("modalVideo");
@@ -74,13 +74,19 @@ document.getElementById("cerrar").onclick = () => {
   video.src = "";
 };
 
-// LOGOUT
+
 document.getElementById("logout").onclick = () => {
   localStorage.removeItem("usuario");
   window.location.href = "login.html";
 };
 
-// INICIAR
+
 cargarPeliculas();
+const toggle = document.getElementById("menuToggle");
+const menu = document.getElementById("menu");
 
-
+if (toggle) {
+  toggle.addEventListener("click", () => {
+    menu.classList.toggle("active");
+  });
+}
