@@ -3,30 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <title>Admin Panel</title>
-  <link rel="stylesheet" href="admin.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <link rel="stylesheet" href="admin.css">
 </head>
 <body>
 
-<header>
-  <h2>🎬 Panel de Administración</h2>
+<header class="admin-header">
+  <h2> Panel de Administración</h2>
   <button id="logout">Cerrar sesión</button>
 </header>
 
-<main>
-  <h3>Subir película / serie</h3>
+<main class="admin-container">
 
-  <input type="text" id="titulo" placeholder="Título">
-  <input type="number" id="anio" placeholder="Año">
-  <input type="text" id="duracion" placeholder="Duración (ej: 2h 10m)">
-  <input type="file" id="video">
+  <!-- =======================
+       FORMULARIO SUBIR
+  ======================== -->
+  <section class="card-admin">
+    <h3>Subir película / serie</h3>
 
-  <button id="subir">Subir</button>
-  <p id="msg"></p>
+    <div class="form-group">
+      <input type="text" id="titulo" placeholder="Título">
+      <input type="number" id="anio" placeholder="Año">
+      <input type="text" id="duracion" placeholder="Duración (ej: 2h 10m)">
+      <input type="file" id="video">
+      <input type="text" id="imagen" placeholder="URL de la imagen de portada">
+    </div>
+
+    <button id="subir" class="btn-primary">Subir</button>
+    <p id="msg"></p>
+  </section>
+
+  <!-- =======================
+       LISTA DE PELÍCULAS
+  ======================== -->
+  <section class="card-admin">
+    <h3>Películas existentes</h3>
+    <div id="listaPeliculas" class="lista-peliculas"></div>
+  </section>
+
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="admin-panel.js"></script>
+
 </body>
 </html>
