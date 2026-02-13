@@ -2,21 +2,34 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Admin Login</title>
-  <link rel="stylesheet" href="admin.css">
+  <title>Panel Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <link rel="stylesheet" href="seguridad.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
-<div class="admin-card">
-  <h1>Panel Admin</h1>
+<div class="page">
 
-  <input type="text" id="user" placeholder="Usuario">
-  <input type="password" id="pass" placeholder="Contraseña">
+  <div class="card">
 
-  <button id="login">Entrar</button>
-  <p id="msg"></p>
+    <div class="card-header">
+      <div class="icon">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
+      <h1>Panel Administrativo</h1>
+      <span>Acceso restringido</span>
+    </div>
+
+    <div class="form">
+      <input type="text" id="user" placeholder="Usuario">
+      <input type="password" id="pass" placeholder="Contraseña">
+      <button id="login">Entrar</button>
+      <div id="msg"></div>
+    </div>
+
+  </div>
+
 </div>
 
 <script src="admin-login.js"></script>
