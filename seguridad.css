@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: radial-gradient(circle at 20% 20%, #1a1a1a, #000 60%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Layout general */
+.page {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tarjeta */
+.card {
+  width: 400px;
+  padding: 50px 45px;
+  background: rgba(15, 15, 15, 0.96);
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow:
+    0 30px 60px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(255,255,255,0.02) inset;
+  color: #fff;
+}
+
+/* Header */
+.card-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.icon {
+  font-size: 42px;
+  color: #e50914;
+  margin-bottom: 18px;
+}
+
+.card-header h1 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.card-header span {
+  font-size: 13px;
+  color: #9e9e9e;
+}
+
+/* Form */
+.form input {
+  width: 100%;
+  padding: 14px 14px;
+  margin-bottom: 16px;
+  background: #1f1f1f;
+  border: 1px solid #2a2a2a;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.form input::placeholder {
+  color: #777;
+}
+
+.form input:focus {
+  outline: none;
+  border-color: #e50914;
+  background: #242424;
+}
+
+/* Botón */
+.form button {
+  width: 100%;
+  padding: 14px;
+  background: #e50914;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.form button:hover {
+  background: #c40812;
+}
+
+.form button:active {
+  transform: scale(0.98);
+}
+
+/* Mensaje */
+#msg {
+  margin-top: 18px;
+  font-size: 13px;
+  min-height: 18px;
+  color: #f5c518;
+}
