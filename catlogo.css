@@ -1,63 +1,253 @@
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
   background: #141414;
+  font-family: Arial, Helvetica, sans-serif;
   color: white;
 }
 
-header {
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 40px;
-  background: black;
+  padding: 15px 60px;
+  background: #000;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
 }
 
 .logo {
-  width: 90px;
+  height: 28px;
 }
 
-header button {
-  background: #e50914;
-  border: none;
+.navbar nav a {
   color: white;
-  padding: 8px 14px;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.navbar nav a:hover {
+  color: #b3b3b3;
+}
+
+button {
+  background: red;
+  border: none;
+  padding: 7px 14px;
+  color: white;
   border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+  padding-top: 80px;
+}
+
+/* =========================
+   HERO BANNER
+========================= */
+/* =========================
+   HERO BANNER MEJORADO
+========================= */
+
+.hero {
+  height: 85vh;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  padding-left: 60px;
+  position: relative;
+  filter: brightness(1.15);
+}
+
+/* Overlay estilo Netflix real */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.85) 0%,
+    rgba(0,0,0,0.6) 30%,
+    rgba(0,0,0,0.3) 55%,
+    rgba(0,0,0,0.1) 75%,
+    transparent 100%
+  );
+}
+
+/* Mejora del texto */
+.hero-info {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.hero-info h1 {
+  font-size: 60px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.hero-info p {
+  margin-bottom: 20px;
+  color: #ddd;
+  font-size: 16px;
+}
+
+.hero-info button {
+  background: white;
+  color: black;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 15px;
   cursor: pointer;
 }
 
-main {
-  padding: 30px 40px;
+
+/* =========================
+   FILAS
+========================= */
+
+.fila {
+  margin-left: 60px;
+  margin-bottom: 50px;
 }
 
-h1 {
-  margin-bottom: 20px;
+.fila h2 {
+  margin-bottom: 15px;
+  font-size: 22px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 20px;
+.contenedor {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  scroll-behavior: smooth;
 }
+
+.contenedor::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================
+   CARDS
+========================= */
 
 .card {
-  background: #222;
-  padding: 10px;
+  min-width: 200px;
+  height: 300px;
   border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  position: relative;
 }
 
-.card video {
+.card img {
   width: 100%;
-  margin-top: 8px;
-  border-radius: 4px;
+  height: 100%;
+  object-fit: cover;
 }
-
 
 .card:hover {
-  transform: scale(1.08);
+  transform: scale(1.15);
+  z-index: 10;
 }
+
+/* =========================
+   TOP 10 NUMEROS
+========================= */
+
+.top10 .card {
+  position: relative;
+}
+
+.numero {
+  position: absolute;
+  left: -25px;
+  bottom: -20px;
+  font-size: 120px;
+  font-weight: bold;
+  color: rgba(255,255,255,0.1);
+  z-index: 0;
+}
+
+/* =========================
+   MODAL VIDEO
+========================= */
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  width: 80%;
+  max-width: 1000px;
+}
+
+.modal video {
+  width: 100%;
+  border-radius: 8px;
+}
+
+#cerrar {
+  font-size: 30px;
+  cursor: pointer;
+  float: right;
+  margin-bottom: 10px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .fila {
+    margin-left: 20px;
+  }
+
+  .hero {
+    padding-left: 20px;
+  }
+
+  .hero-info h1 {
+    font-size: 30px;
+  }
+
+  .card {
+    min-width: 150px;
+    height: 230px;
+  }
+}
+
