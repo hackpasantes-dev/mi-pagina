@@ -6,7 +6,7 @@ document.getElementById("login").addEventListener("click", () => {
     localStorage.setItem("admin", "true");
     window.location.href = "admin-panel.html";
   } else {
-    document.getElementById("msg").textContent = "❌ Credenciales incorrectas";
+    document.getElementById("msg").textContent = "Credenciales incorrectas";
   }
 });
 
