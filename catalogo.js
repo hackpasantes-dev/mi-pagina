@@ -1,178 +1,207 @@
+// =========================
+// VALIDAR USUARIO
+// =========================
 const usuario = JSON.parse(localStorage.getItem("usuario"));
 
 if (!usuario) {
-window.location.href = "login.html";
+  window.location.href = "login.html";
 }
 
+// =========================
+// SUPABASE
+// =========================
 const SUPABASE_URL = "https://xtzthkkzsznnfvvytvvm.supabase.co";
 const SUPABASE_KEY = "sb_publishable_pgpdiWZfzds85tvhanzmVA_vKbAzdsU";
 
 const db = window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+  SUPABASE_URL,
+  SUPABASE_KEY
 );
 
-let player = null;
+let player; // 🎬 Plyr global
 
-/* =========================
-CARGAR PELÍCULAS
-========================= */
+// =========================
+// CARGAR PELICULAS
+// =========================
 async function cargarPeliculas() {
-const { data, error } = await db
-.from("peliculas")
-.select("*");
+  const { data, error } = await db
+    .from("peliculas")
+    .select("*");
 
-if (error) {
-console.log(error);
-return;
-}
+  if (error) {
+    console.log("Error:", error);
+    return;
+  }
 
-if (!data || data.length === 0) return;
+  if (!data || data.length === 0) return;
 
-const hero = document.getElementById("hero");
-const heroTitulo = document.getElementById("heroTitulo");
-const heroDescripcion = document.getElementById("heroDescripcion");
-const heroPlay = document.getElementById("heroPlay");
+  /* ===== HERO ===== */
+  const hero = document.getElementById("hero");
+  const heroTitulo = document.getElementById("heroTitulo");
+  const heroDescripcion = document.getElementById("heroDescripcion");
+  const heroPlay = document.getElementById("heroPlay");
 
-const destacada = data[0];
+  const destacada = data[0];
 
-hero.style.backgroundImage = `url(${destacada.imagen_url})`;
-heroTitulo.textContent = destacada.titulo;
-heroDescripcion.textContent =
-`${destacada.anio} • ${destacada.duracion}`;
+  hero.style.backgroundImage = `url(${destacada.imagen_url})`;
+  heroTitulo.textContent = destacada.titulo;
+  heroDescripcion.textContent =
+    `${destacada.anio} • ${destacada.duracion}`;
 
-heroPlay.onclick = () => abrirModal(destacada.video_url);
+  heroPlay.onclick = () => abrirModal(destacada.video_url);
 
-const contenedor = document.getElementById("peliculas");
-contenedor.innerHTML = "";
+  /* ===== TOP 10 🔥 ===== */
+  const contenedorTop10 = document.getElementById("top10");
+  contenedorTop10.innerHTML = "";
 
-data.forEach(p => {
-contenedor.innerHTML += `       <div class="card" onclick="abrirModal('${p.video_url}')">         <img src="${p.imagen_url}" alt="${p.titulo}">       </div>
+  data.slice(0, 10).forEach((p, index) => {
+    const card = document.createElement("div");
+    card.classList.add("card-top");
+
+    card.innerHTML = `
+      <span class="numero">${index + 1}</span>
+      <img src="${p.imagen_url}" alt="${p.titulo}">
     `;
-});
+
+    card.onclick = () => abrirModal(p.video_url);
+
+    contenedorTop10.appendChild(card);
+
+    // animación tipo Netflix
+    setTimeout(() => {
+      card.classList.add("show");
+    }, index * 120);
+  });
+
+  /* ===== CATALOGO ===== */
+  const contenedor = document.getElementById("peliculas");
+  contenedor.innerHTML = "";
+
+  data.forEach(p => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    card.innerHTML = `
+      <img src="${p.imagen_url}" alt="${p.titulo}">
+    `;
+
+    card.onclick = () => abrirModal(p.video_url);
+
+    // 🔥 efecto Netflix: cambiar hero al pasar mouse
+    card.onmouseenter = () => {
+      hero.style.backgroundImage = `url(${p.imagen_url})`;
+      heroTitulo.textContent = p.titulo;
+      heroDescripcion.textContent =
+        `${p.anio} • ${p.duracion}`;
+      heroPlay.onclick = () => abrirModal(p.video_url);
+    };
+
+    contenedor.appendChild(card);
+  });
 }
 
-/* =========================
-ABRIR MODAL
-========================= */
+// =========================
+// ABRIR MODAL VIDEO
+// =========================
 function abrirModal(url) {
-const modal = document.getElementById("modal");
-const video = document.getElementById("modalVideo");
+  const modal = document.getElementById("modal");
+  const video = document.getElementById("modalVideo");
 
-modal.style.display = "flex";
+  modal.style.display = "flex";
 
-// limpiar player anterior
-if (player) {
-player.destroy();
-player = null;
+  if (player) {
+    player.destroy();
+  }
+
+  video.innerHTML = `<source src="${url}" type="video/mp4">`;
+
+  player = new Plyr(video, {
+    controls: [
+      'play',
+      'progress',
+      'current-time',
+      'duration',
+      'mute',
+      'volume',
+      'settings',
+      'fullscreen'
+    ]
+  });
+
+  player.on("ready", () => {
+    const controls = document.querySelector(".plyr__controls");
+
+    const back = document.createElement("button");
+    back.innerHTML = "⏪ 10s";
+    back.className = "plyr__control";
+    back.onclick = () => player.currentTime -= 10;
+
+    const forward = document.createElement("button");
+    forward.innerHTML = "10s ⏩";
+    forward.className = "plyr__control";
+    forward.onclick = () => player.currentTime += 10;
+
+    controls.prepend(back);
+    controls.appendChild(forward);
+  });
 }
 
-// 🔥 FORMA CORRECTA
-video.src = url;
-video.load();
-
-player = new Plyr(video, {
-controls: [
-'play',
-'progress',
-'current-time',
-'duration',
-'mute',
-'volume',
-'fullscreen'
-],
-clickToPlay: true,
-hideControls: false
-});
-
-player.on('ready', () => {
-
-```
-const controls = document.querySelector('.plyr__controls');
-if (!controls) return;
-
-// evitar duplicados
-if (controls.querySelector('.custom-back')) return;
-
-const back = document.createElement('button');
-back.innerHTML = '⏪';
-back.className = 'plyr__control custom-back';
-back.onclick = () => player.currentTime -= 10;
-
-const forward = document.createElement('button');
-forward.innerHTML = '⏩';
-forward.className = 'plyr__control custom-forward';
-forward.onclick = () => player.currentTime += 10;
-
-controls.prepend(back);
-controls.appendChild(forward);
-```
-
-});
-
-player.play();
-}
-
-/* =========================
-CERRAR MODAL
-========================= */
+// =========================
+// CERRAR MODAL
+// =========================
 function cerrarModal() {
-const modal = document.getElementById("modal");
-const video = document.getElementById("modalVideo");
+  const modal = document.getElementById("modal");
 
-if (player) {
-player.destroy();
-player = null;
+  if (player) {
+    player.destroy();
+    player = null;
+  }
+
+  modal.style.display = "none";
 }
 
-// 🔥 LIMPIEZA REAL
-video.pause();
-video.removeAttribute("src");
-video.load();
-
-modal.style.display = "none";
-}
-
-/* =========================
-EVENTOS
-========================= */
+// =========================
+// EVENTOS
+// =========================
 document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("cerrar").onclick = cerrarModal;
 
-document.getElementById("cerrar").onclick = cerrarModal;
-
-document.getElementById("modal").addEventListener("click", (e) => {
-if (e.target.id === "modal") cerrarModal();
+  document.getElementById("modal").addEventListener("click", (e) => {
+    if (e.target.id === "modal") cerrarModal();
+  });
 });
 
-});
-
-/* ESC (PC) */
 document.addEventListener("keydown", (e) => {
-if (e.key === "Escape") cerrarModal();
+  if (e.key === "Escape") cerrarModal();
 });
 
-/* PAUSA AUTOMÁTICA */
 document.addEventListener("visibilitychange", () => {
-if (document.hidden && player) {
-player.pause();
-}
+  if (document.hidden && player) {
+    player.pause();
+  }
 });
 
-/* LOGOUT */
+// =========================
+// LOGOUT
+// =========================
 document.getElementById("logout").onclick = () => {
-localStorage.removeItem("usuario");
-window.location.href = "login.html";
+  localStorage.removeItem("usuario");
+  window.location.href = "login.html";
 };
 
-/* INICIAR */
-cargarPeliculas();
-
-/* MENU */
+// =========================
+// MENU
+// =========================
 const toggle = document.getElementById("menuToggle");
 const menu = document.getElementById("menu");
 
 if (toggle) {
-toggle.addEventListener("click", () => {
-menu.classList.toggle("active");
-});
+  toggle.addEventListener("click", () => {
+    menu.classList.toggle("active");
+  });
 }
+
+// =========================
+// INICIAR
+// =========================
+cargarPeliculas();
