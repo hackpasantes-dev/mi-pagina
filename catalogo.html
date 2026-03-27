@@ -4,9 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Netflix</title>
+
   <link rel="stylesheet" href="catlogo.css">
+
+  <!--  PLYR CSS -->
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
 </head>
 <body>
+
 <header class="navbar">
   <div class="left">
     <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" class="logo">
@@ -28,10 +33,9 @@
   </div>
 </header>
 
-
 <main>
 
-  <!-- 🎬 HERO BANNER -->
+  <!-- 🎬 HERO -->
   <section id="hero" class="hero">
     <div class="hero-info">
       <h1 id="heroTitulo"></h1>
@@ -54,15 +58,26 @@
 
 </main>
 
-  <!-- 🎬 MODAL VIDEO -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span id="cerrar">&times;</span>
-      <video id="modalVideo" controls autoplay></video>
-    </div>
-  </div>
+<!-- 🎬 MODAL VIDEO PRO -->
+<div id="modal" class="modal">
+  <div class="modal-content">
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="catalogo.js"></script>
+    <button id="cerrar" class="btn-cerrar">Salir</button>
+
+    <!-- 🔥 VIDEO PARA PLYR -->
+    <video id="modalVideo" playsinline></video>
+
+  </div>
+</div>
+
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- 🔥 PLYR JS -->
+<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+
+<!-- TU JS -->
+<script src="catalogo.js"></script>
+
 </body>
 </html>
