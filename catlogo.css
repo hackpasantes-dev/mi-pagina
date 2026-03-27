@@ -188,7 +188,7 @@ SCROLL (TOP 10)
 }
 
 /* =========================
-🔥 CATALOGO EN GRID (AÑADIDO SIN BORRAR NADA)
+🔥 CATALOGO EN GRID
 ========================= */
 #peliculas {
   display: grid;
@@ -221,7 +221,7 @@ CARDS
 }
 
 .card:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 /* =========================
