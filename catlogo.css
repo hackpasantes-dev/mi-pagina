@@ -171,7 +171,7 @@ FILAS
 }
 
 /* =========================
-SCROLL (TOP 10)
+SCROLL (SOLO TOP 10)
 ========================= */
 .contenedor {
   display: flex;
@@ -188,13 +188,13 @@ SCROLL (TOP 10)
 }
 
 /* =========================
-🔥 CATALOGO EN GRID
+🔥 CATALOGO POPULARES (GRID REAL)
 ========================= */
-#peliculas {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  overflow-x: hidden;
+#peliculas.contenedor {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  overflow-x: hidden !important;
 }
 
 /* =========================
@@ -211,7 +211,7 @@ CARDS
 
 #peliculas .card {
   min-width: 100%;
-  height: 180px;
+  height: 260px;
 }
 
 .card img {
@@ -376,8 +376,8 @@ RESPONSIVE
   }
 
   /* GRID MOBILE */
-  #peliculas {
-    grid-template-columns: repeat(3, 1fr);
+  #peliculas.contenedor {
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
 
@@ -398,7 +398,6 @@ RESPONSIVE
 
   .card-top img {
     width: 100px;
-    height: 100%;
   }
 
   .numero {
