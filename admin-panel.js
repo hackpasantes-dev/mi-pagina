@@ -32,7 +32,7 @@ document.getElementById("subir").onclick = async () => {
   const file = document.getElementById("video").files[0];
 
   if (!titulo || !anio || !duracion || !file || !imagen_url) {
-    msg.textContent = "❌ Completa todos los campos";
+    msg.textContent = "Por favor Completa todos los campos";
     return;
   }
 
@@ -44,7 +44,7 @@ document.getElementById("subir").onclick = async () => {
     await db.storage.from("videos").upload(fileName, file);
 
   if (uploadError) {
-    msg.textContent = "❌ Error subiendo video";
+    msg.textContent = "Error subiendo video";
     return;
   }
 
@@ -56,9 +56,9 @@ document.getElementById("subir").onclick = async () => {
   ]);
 
   if (error) {
-    msg.textContent = "❌ Error guardando película";
+    msg.textContent = "Error guardando película";
   } else {
-    msg.textContent = "✅ Película subida correctamente";
+    msg.textContent = "Película subida correctamente";
     limpiarFormulario();
     cargarPeliculasAdmin();
   }
