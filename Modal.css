@@ -1,1 +1,36 @@
+/* =========================================
+   MODAL REPRODUCTOR TIPO NETFLIX
+   Cárgalo DESPUÉS de catlogo.css
+   ========================================= */
 
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 9999;
+}
+
+.vp {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  background: #000;
+  overflow: hidden;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.vp-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+
+/* ---------- Capa de controles ---------- */
+.vp-ui {
+  position: absolute;
